@@ -1,0 +1,156 @@
+body {
+  background: #36393F;
+  margin: 0;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+.layersNav {
+  float: right;
+  min-width: 300px;
+  height: 100vh;
+  background: #202225;
+  overflow: auto;
+}
+.colorPickerCenter {
+  text-align: center;
+}
+.colorPickerCenter > div {
+  display: inline-block;
+}
+.centerSvgHolder {
+  pointer-events: none;
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+.centerSvg {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  margin: 0 auto;
+}
+#layerSelect {
+  list-style-type: none;
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+#layerSelect li.row {
+  height: 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: rgb(59, 62, 70);
+  padding: 8px;
+  user-select: none;
+  cursor: pointer;
+  line-height: 16px;
+  border-radius: 8px;
+  margin: 2px;
+}
+#layerSelect li.row:hover {
+  background: #464e55;
+}
+#layerSelect li.row.selected {
+  border: 1px solid white;
+}
+#layerSelect li.divider {
+  padding: 4px 8px 4px 8px;
+}
+#layerSelect li.divider div {
+  height: 1px;
+  background-color: #3B3E46;
+}
+#layerSelect li.group {
+  height: 16px;
+  font-size: 14px;
+  text-transform: uppercase;
+  background: rgb(59, 62, 70);
+  padding: 8px;
+  user-select: none;
+  cursor: pointer;
+  line-height: 16px;
+  border-radius: 8px;
+  margin: 2px;
+}
+#layerSelect li.group ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  float: right;
+  width: 280px;
+  margin-top: 10px;
+  margin-right: -10px;
+  display: none;
+}
+#layerSelect li.group ul li {
+  margin-top: 0px;
+}
+#layerSelect li.group i {
+  float: right;
+}
+#layerSelect li.group ul li.group ul {
+  width: 260px;
+}
+.currentColor {
+  float: right;
+  width: 30px;
+  height: 14px;
+  background: white;
+  border: 1px solid black;
+}
+.selectedRow {
+  margin: auto;
+  float: left;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid white;
+  margin-right: 6px;
+  margin-top: 4px;
+}
+.selectedRow.selected {
+  background: #738392;
+}
+.centerSvg > object {
+  width: 806px;
+}
+button {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+  background: rgb(35, 51, 173);
+  color: rgb(219, 219, 219);
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 4px 8px 4px 8px;
+  cursor: pointer;
+}
+button:hover {
+  background: #283AC7;
+  color: white;
+}
+.exportHolder {
+  /* position: absolute; */
+  /* text-align: center; */
+  /* width: 300px; */
+  /* bottom: 0; */
+  /* right: 0; */
+  margin: 8px;
+}
+
+
+.colpick_dark {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+.colpick_field_arrs {
+  width: 0 !important;
+  display: none !important;
+}
+.colpick_field input, .colpick_hex_field input {
+  right: 3px !important;
+}

@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Gamepadviewer Customizer</title>
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/colpick.css">
+  <link rel="stylesheet" type="text/css" href="css/fontawesome.min.css">
+</head>
+<body>
+  <div>
+    <div class="layersNav">
+      <div class="colorPickerCenter">
+        <div id="colorPicker"></div>
+      </div>
+      <div class="exportHolder">
+        <button id="exportJson">Export</button>
+        <button id="importJson">Import</button>
+        <button id="gradientToggle">Gradient</button>
+      </div>
+      <div style="display: none;">
+        <input type="file" id="importInput" accept=".json" style="display: none;">
+        <a id="downloadBase"></a>
+        <a id="downloadBumper"></a>
+        <a id="downloadDisconnected"></a>
+        <a id="downloadDpad"></a>
+        <a id="downloadFace"></a>
+        <a id="downloadStart"></a>
+        <a id="downloadSticks"></a>
+        <a id="downloadTouchpad"></a>
+        <a id="downloadTriggers"></a>
+        <a id="downloadMeta"></a>
+        <a id="downloadJson"></a>
+      </div>
+      <ul id="layerSelect">
+        <li class="group">Preview Select<i class="fas fa-angle-down"></i>
+          <ul style="float: none; margin-left: -1px">
+            <li class="row" select="controllerSvg">
+              <div>Primary</div>
+            </li>
+            <li class="row" select="disconnectedSvg">
+              <div>Disconnected</div>
+            </li>
+            <li class="row" select="controllerActiveSvg">
+              <div>Active</div>
+            </li>
+          </ul>
+        </li>
+        <li class="divider">
+          <div></div>
+        </li>
+        <li class="group">Simple Mode<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Left_Trigger_Top", "Left_Trigger_Bottom", "Left_Trigger_Text_Group", "Left_Bumper_Top", "Left_Bumper_Bottom", "Right_Trigger_Top", "Right_Trigger_Bottom", "Right_Trigger_Text_Group", "Right_Bumper_Top", "Right_Bumper_Bottom", "Share_Inner", "Options_Inner", "Dpad_Down_Inner", "Dpad_Right_Inner", "Dpad_Up_Inner", "Dpad_Left_Inner", "Dpad_Down_Outer", "Dpad_Right_Outer", "Dpad_Up_Outer", "Dpad_Left_Outer", "Left_Handle_Inner", "Right_Handle_Inner", "Touchpad_Inner", "Touchpad_Border", "Stick_Inner", "Stick_Outer", "Stick_Border", "Left_Stick_Inner", "Left_Stick_Outer", "Left_Stick_Border", "Right_Stick_Inner", "Right_Stick_Outer", "Right_Stick_Border", "Triangle_Glyph", "Square_Glyph", "X_Glyph", "Circle_Glyph"]' mode='simple' class="row">
+              <div class="selectedRow"></div>Accents<div class="currentColor" style="background: #C1272D;"></div>
+            </li>
+            <li parts='["Controller_Base", "Controller_Outline", "Button_Base_Inner", "Dpad_Base_Inner", "Dpad_Base_Down", "Dpad_Base_Right", "Dpad_Base_Up", "Dpad_Base_Left", "Left_Stick_Base_Outer", "Left_Stick_Base_Border", "Right_Stick_Base_Outer", "Right_Stick_Base_Border"]' mode='simple' class="row">
+              <div class="selectedRow"></div>Base<div class="currentColor" style="background: #FFFFFF;"></div>
+            </li>
+            <li parts='["Triangle_Outer", "Triangle_Inner", "Square_Outer", "Square_Inner", "X_Outer", "X_Inner", "Circle_Outer", "Circle_Inner"]' mode='simple' class="row">
+              <div class="selectedRow"></div>Buttons<div class="currentColor" style="background: #2C2C2C;"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Trigger / Bumper<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Left Trigger<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Left_Trigger_Top"]' class="row">
+                  <div class="selectedRow"></div>Left Trigger Top<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Left_Trigger_Bottom"]' class="row">
+                  <div class="selectedRow"></div>Left Trigger Bottom<div class="currentColor" style="background: #9E1F20;"></div>
+                </li>
+                <li parts='["Left_Trigger_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Left Trigger Text<div class="currentColor" style="background: #C6383D;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Right Trigger<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Right_Trigger_Top"]' class="row">
+                  <div class="selectedRow"></div>Right Trigger Top<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Right_Trigger_Bottom"]' class="row">
+                  <div class="selectedRow"></div>Right Trigger Bottom<div class="currentColor" style="background: #9E1F20;"></div>
+                </li>
+                <li parts='["Right_Trigger_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Right Trigger Text<div class="currentColor" style="background: #C6383D;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Left Bumper<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Left_Bumper_Top"]' class="row">
+                  <div class="selectedRow"></div>Left Bumper Top<div class="currentColor" style="background: #9E1F20;"></div>
+                </li>
+                <li parts='["Left_Bumper_Bottom"]' class="row">
+                  <div class="selectedRow"></div>Left Bumper Bottom<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Right Bumper<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Right_Bumper_Top"]' class="row">
+                  <div class="selectedRow"></div>Right Bumper Top<div class="currentColor" style="background: #9E1F20;"></div>
+                </li>
+                <li parts='["Right_Bumper_Bottom"]' class="row">
+                  <div class="selectedRow"></div>Right Bumper Bottom<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Share / Options Button<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Share Button<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Share_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Share Button Text<div class="currentColor" style="background: #080808;"></div>
+                </li>
+                <li parts='["Share_Inner"]' class="row">
+                  <div class="selectedRow"></div>Share Button Inner<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Share_Border"]' class="row">
+                  <div class="selectedRow"></div>Share Button Border<div class="currentColor" style="background: #000000;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Options Button<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Options_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Options Button Text<div class="currentColor" style="background: #080808;"></div>
+                </li>
+                <li parts='["Options_Inner"]' class="row">
+                  <div class="selectedRow"></div>Options Button Inner<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Options_Border"]' class="row">
+                  <div class="selectedRow"></div>Options Button Border<div class="currentColor" style="background: #000000;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Touchpad<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Touchpad_Inner"]' class="row">
+              <div class="selectedRow"></div>Touchpad Inner<div class="currentColor" style="background: #C1272D;"></div>
+            </li>
+            <li parts='["Touchpad_Border"]' class="row">
+              <div class="selectedRow"></div>Touchpad Border<div class="currentColor" style="background: #9E1F20;"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Dpad<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Dpad Base<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Dpad_Base_Up"]' class="row">
+                  <div class="selectedRow"></div>Dpad Base Up<div class="currentColor" style="background: #1F1F1F;"></div>
+                </li>
+                <li parts='["Dpad_Base_Right"]' class="row">
+                  <div class="selectedRow"></div>Dpad Base Right<div class="currentColor" style="background: #1F1F1F;"></div>
+                </li>
+                <li parts='["Dpad_Base_Down"]' class="row">
+                  <div class="selectedRow"></div>Dpad Base Down<div class="currentColor" style="background: #1F1F1F;"></div>
+                </li>
+                <li parts='["Dpad_Base_Left"]' class="row">
+                  <div class="selectedRow"></div>Dpad Base Left<div class="currentColor" style="background: #1F1F1F;"></div>
+                </li>
+                <li parts='["Dpad_Base_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Base Inner<div class="currentColor" style="background: #080808;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Dpad Up<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Dpad_Up_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Up Outer<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Dpad_Up_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Up Inner<div class="currentColor" style="background: #A42E2E;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Dpad Right<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Dpad_Right_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Right Outer<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Dpad_Right_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Right Inner<div class="currentColor" style="background: #A42E2E;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Dpad Down<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Dpad_Down_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Down Outer<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Dpad_Down_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Down Inner<div class="currentColor" style="background: #A42E2E;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Dpad Left<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Dpad_Left_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Left Outer<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Dpad_Left_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Left Inner<div class="currentColor" style="background: #A42E2E;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Buttons<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Button_Base_Inner"]' class="row">
+              <div class="selectedRow"></div>Base<div class="currentColor" style="background: #080808;"></div>
+            </li>
+            <li class="group">Triangle<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Triangle_Glyph"]' class="row">
+                  <div class="selectedRow"></div>Triangle Glyph<div class="currentColor" style="background: #40E2A0;"></div>
+                </li>
+                <li parts='["Triangle_Inner"]' class="row">
+                  <div class="selectedRow"></div>Triangle Inner<div class="currentColor" style="background: #2C2C2C;"></div>
+                </li>
+                <li parts='["Triangle_Outer"]' class="row">
+                  <div class="selectedRow"></div>Triangle Outer<div class="currentColor" style="background: #222222;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Circle<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Circle_Glyph"]' class="row">
+                  <div class="selectedRow"></div>Circle Glyph<div class="currentColor" style="background: #FF6666;"></div>
+                </li>
+                <li parts='["Circle_Inner"]' class="row">
+                  <div class="selectedRow"></div>Circle Inner<div class="currentColor" style="background: #2C2C2C;"></div>
+                </li>
+                <li parts='["Circle_Outer"]' class="row">
+                  <div class="selectedRow"></div>Circle Outer<div class="currentColor" style="background: #222222;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">X<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["X_Glyph"]' class="row">
+                  <div class="selectedRow"></div>X Glyph<div class="currentColor" style="background: #7CB2E8;"></div>
+                </li>
+                <li parts='["X_Inner"]' class="row">
+                  <div class="selectedRow"></div>X Inner<div class="currentColor" style="background: #2C2C2C;"></div>
+                </li>
+                <li parts='["X_Outer"]' class="row">
+                  <div class="selectedRow"></div>X Outer<div class="currentColor" style="background: #222222;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Square<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Square_Glyph"]' class="row">
+                  <div class="selectedRow"></div>Square Glyph<div class="currentColor" style="background: #FF69F8;"></div>
+                </li>
+                <li parts='["Square_Inner"]' class="row">
+                  <div class="selectedRow"></div>Square Inner<div class="currentColor" style="background: #2C2C2C;"></div>
+                </li>
+                <li parts='["Square_Outer"]' class="row">
+                  <div class="selectedRow"></div>Square Outer<div class="currentColor" style="background: #222222;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li parts='["Speaker_Group"]' class="row">
+          <div class="selectedRow"></div>Speaker<div class="currentColor" style="background: #1F1F1F;"></div>
+        </li>
+        <li class="group">PS4 Button<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["PS4_Icon_Group"]' class="row">
+              <div class="selectedRow"></div>PS4 Button Glyph<div class="currentColor" style="background: #F2F2F2;"></div>
+            </li>
+            <li parts='["PS4_Home_Inner"]' class="row">
+              <div class="selectedRow"></div>PS4 Button Inner<div class="currentColor" style="background: #050505;"></div>
+            </li>
+            <li parts='["PS4_Home_Border"]' class="row">
+              <div class="selectedRow"></div>PS4 Button Border<div class="currentColor" style="background: #050505;"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Ports<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Headphone_Bar"]' class="row">
+              <div class="selectedRow"></div>Ports Bar<div class="currentColor" style="background: #0B0B0F;"></div>
+            </li>
+            <li parts='["Headphone_Slit"]' class="row">
+              <div class="selectedRow"></div>Charging Port<div class="currentColor" style="background: #000000;"></div>
+            </li>
+            <li parts='["Headphone_Jack"]' class="row">
+              <div class="selectedRow"></div>Headphone Port<div class="currentColor" style="background: #000000;"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Sticks / Stick Base<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Sticks<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Stick_Inner"]' class="row">
+                  <div class="selectedRow"></div>Stick Inner<div class="currentColor" style="background: #E02D39;"></div>
+                </li>
+                <li parts='["Stick_Outer"]' class="row">
+                  <div class="selectedRow"></div>Stick Outer<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Stick_Border"]' class="row">
+                  <div class="selectedRow"></div>Stick Border<div class="currentColor" style="background: #CF2A32;"></div>
+                </li>
+              </ul>
+            </li>
+            <!-- <li class="group">Left Stick<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Left_Stick_Inner"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Inner<div class="currentColor" style="background: #E02D39;"></div>
+                </li>
+                <li parts='["Left_Stick_Outer"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Outer<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Left_Stick_Border"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Border<div class="currentColor" style="background: #CF2A32;"></div>
+                </li>
+              </ul>
+            </li> -->
+            <li class="group">Left Stick Base<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Left_Stick_Base_Inner"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Base Inner<div class="currentColor" style="background: #000000;"></div>
+                </li>
+                <li parts='["Left_Stick_Base_Outer"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Base Outer<div class="currentColor" style="background: #E6E6E6"></div>
+                </li>
+                <li parts='["Left_Stick_Base_Border"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Base Border<div class="currentColor" style="background: #CFCFCF;"></div>
+                </li>
+              </ul>
+            </li>
+            <!-- <li class="group">Right Stick<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Right_Stick_Inner"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Inner<div class="currentColor" style="background: #E02D39;"></div>
+                </li>
+                <li parts='["Right_Stick_Outer"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Outer<div class="currentColor" style="background: #C1272D;"></div>
+                </li>
+                <li parts='["Right_Stick_Border"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Border<div class="currentColor" style="background: #CF2A32;"></div>
+                </li>
+              </ul>
+            </li> -->
+            <li class="group">Right Stick Base<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Right_Stick_Base_Inner"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Base Inner<div class="currentColor" style="background: #000000;"></div>
+                </li>
+                <li parts='["Right_Stick_Base_Outer"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Base Outer<div class="currentColor" style="background: #E6E6E6"></div>
+                </li>
+                <li parts='["Right_Stick_Base_Border"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Base Border<div class="currentColor" style="background: #CFCFCF;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Controller Base<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Controller_Outline"]' class="row">
+              <div class="selectedRow"></div>Controller Outline<div class="currentColor" style="background: #CFCFCF;"></div>
+            </li>
+            <li parts='["Controller_Gradient"]' class="row">
+              <div class="selectedRow"></div>Controller Gradient<div class="currentColor" style="background: #000000"></div>
+            </li>
+            <li parts='["Controller_Base"]' class="row">
+              <div class="selectedRow"></div>Controller Base<div class="currentColor" style="background: #E6E6E6;"></div>
+            </li>
+          </ul>
+        </li>
+        <li parts='["Left_Handle_Inner"]' class="row">
+          <div class="selectedRow"></div>Left Handle<div class="currentColor" style="background: #C1272D;"></div>
+        </li>
+        <li parts='["Right_Handle_Inner"]' class="row">
+          <div class="selectedRow"></div>Right Handle<div class="currentColor" style="background: #C1272D;"></div>
+        </li>
+        <!-- Disconnected parts -->
+        <li parts='["Disconnected_Right_Trigger"]' class="row">
+          <div class="selectedRow"></div>Right Trigger<div class="currentColor" style="background: #ED1C24;"></div>
+        </li>
+        <li parts='["Disconnected_Left_Trigger"]' class="row">
+          <div class="selectedRow"></div>Left Trigger<div class="currentColor" style="background: #ED1C24;"></div>
+        </li>
+        <li parts='["Disconnected_Controller_Base"]' class="row">
+          <div class="selectedRow"></div>Controller Base<div class="currentColor" style="background: #ED1C24;"></div>
+        </li>
+        <li parts='["Disconnected_Group"]' class="row">
+          <div class="selectedRow"></div>Disconnected Text<div class="currentColor" style="background: #F2F2F2;"></div>
+        </li>
+        <!-- Active parts -->
+        <li class="group">Simple Mode<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Active_Left_Trigger_Top", "Active_Left_Trigger_Bottom", "Active_Left_Trigger_Text_Group", "Active_Left_Bumper_Top", "Active_Left_Bumper_Bottom", "Active_Right_Trigger_Top", "Active_Right_Trigger_Bottom", "Active_Right_Trigger_Text_Group", "Active_Right_Bumper_Top", "Active_Right_Bumper_Bottom", "Active_Share_Inner", "Active_Options_Inner", "Active_Dpad_Down_Inner", "Active_Dpad_Right_Inner", "Active_Dpad_Up_Inner", "Active_Dpad_Left_Inner", "Active_Dpad_Down_Outer", "Active_Dpad_Right_Outer", "Active_Dpad_Up_Outer", "Active_Dpad_Left_Outer", "Active_Left_Handle_Inner", "Active_Right_Handle_Inner", "Active_Touchpad_Inner", "Active_Touchpad_Border", "Active_Left_Stick_Inner", "Active_Left_Stick_Outer", "Active_Left_Stick_Border", "Active_Right_Stick_Inner", "Active_Right_Stick_Outer", "Active_Right_Stick_Border", "Active_Triangle_Glyph", "Active_Square_Glyph", "Active_X_Glyph", "Active_Circle_Glyph"]' mode='simple' class="row">
+              <div class="selectedRow"></div>Accents<div class="currentColor" style="background: #3ED8D2;"></div>
+            </li>
+            <li parts='["Active_Triangle_Outer", "Active_Triangle_Inner", "Active_Square_Outer", "Active_Square_Inner", "Active_X_Outer", "Active_X_Inner", "Active_Circle_Outer", "Active_Circle_Inner"]' mode='simple' class="row">
+              <div class="selectedRow"></div>Buttons<div class="currentColor" style="background: #D3D3D3;"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Trigger / Bumper<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Left Trigger<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Left_Trigger_Top"]' class="row">
+                  <div class="selectedRow"></div>Left Trigger Top<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Left_Trigger_Bottom"]' class="row">
+                  <div class="selectedRow"></div>Left Trigger Bottom<div class="currentColor" style="background: #61E0DF;"></div>
+                </li>
+                <li parts='["Active_Left_Trigger_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Left Trigger Text<div class="currentColor" style="background: #39C7C2;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Right Trigger<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Right_Trigger_Top"]' class="row">
+                  <div class="selectedRow"></div>Right Trigger Top<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Right_Trigger_Bottom"]' class="row">
+                  <div class="selectedRow"></div>Right Trigger Bottom<div class="currentColor" style="background: #61E0DF;"></div>
+                </li>
+                <li parts='["Active_Right_Trigger_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Right Trigger Text<div class="currentColor" style="background: #39C7C2;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Bumpers<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Bumper_Top", "Active_Right_Bumper_Top", "Active_Left_Bumper_Top"]' class="row">
+                  <div class="selectedRow"></div>Bumper Top<div class="currentColor" style="background: #61E0DF;"></div>
+                </li>
+                <li parts='["Active_Bumper_Bottom", "Active_Right_Bumper_Bottom", "Active_Left_Bumper_Bottom"]' class="row">
+                  <div class="selectedRow"></div>Bumper Bottom<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Share / Options Button<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Share Button<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Share_Inner"]' class="row">
+                  <div class="selectedRow"></div>Share Button Inner<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Share_Border"]' class="row">
+                  <div class="selectedRow"></div>Share Button Border<div class="currentColor" style="background: #FFFFFF;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Options Button<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Options_Inner"]' class="row">
+                  <div class="selectedRow"></div>Options Button Inner<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Options_Border"]' class="row">
+                  <div class="selectedRow"></div>Options Button Border<div class="currentColor" style="background: #FFFFFF;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Touchpad<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Active_Touchpad_Inner"]' class="row">
+              <div class="selectedRow"></div>Touchpad Inner<div class="currentColor" style="background: #3ED8D2;"></div>
+            </li>
+            <li parts='["Active_Touchpad_Border"]' class="row">
+              <div class="selectedRow"></div>Touchpad Border<div class="currentColor" style="background: #61E0DF;"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Dpad<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Dpad Up<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Dpad_Up_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Up Outer<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Dpad_Up_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Up Inner<div class="currentColor" style="background: #6EE2DD;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Dpad Right<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Dpad_Right_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Right Outer<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Dpad_Right_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Right Inner<div class="currentColor" style="background: #6EE2DD;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Dpad Down<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Dpad_Down_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Down Outer<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Dpad_Down_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Down Inner<div class="currentColor" style="background: #6EE2DD;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Dpad Left<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Dpad_Left_Outer"]' class="row">
+                  <div class="selectedRow"></div>Dpad Left Outer<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Dpad_Left_Inner"]' class="row">
+                  <div class="selectedRow"></div>Dpad Left Inner<div class="currentColor" style="background: #6EE2DD;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Buttons<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Triangle<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Triangle_Glyph"]' class="row">
+                  <div class="selectedRow"></div>Triangle Glyph<div class="currentColor" style="background: #BF1D5F;"></div>
+                </li>
+                <li parts='["Active_Triangle_Inner"]' class="row">
+                  <div class="selectedRow"></div>Triangle Inner<div class="currentColor" style="background: #D3D3D3;"></div>
+                </li>
+                <li parts='["Active_Triangle_Outer"]' class="row">
+                  <div class="selectedRow"></div>Triangle Outer<div class="currentColor" style="background: #DDDDDD;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Circle<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Circle_Glyph"]' class="row">
+                  <div class="selectedRow"></div>Circle Glyph<div class="currentColor" style="background: #009999;"></div>
+                </li>
+                <li parts='["Active_Circle_Inner"]' class="row">
+                  <div class="selectedRow"></div>Circle Inner<div class="currentColor" style="background: #D3D3D3;"></div>
+                </li>
+                <li parts='["Active_Circle_Outer"]' class="row">
+                  <div class="selectedRow"></div>Circle Outer<div class="currentColor" style="background: #DDDDDD;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">X<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_X_Glyph"]' class="row">
+                  <div class="selectedRow"></div>X Glyph<div class="currentColor" style="background: #834D17;"></div>
+                </li>
+                <li parts='["Active_X_Inner"]' class="row">
+                  <div class="selectedRow"></div>X Inner<div class="currentColor" style="background: #D3D3D3;"></div>
+                </li>
+                <li parts='["Active_X_Outer"]' class="row">
+                  <div class="selectedRow"></div>X Outer<div class="currentColor" style="background: #DDDDDD;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Square<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Square_Glyph"]' class="row">
+                  <div class="selectedRow"></div>Square Glyph<div class="currentColor" style="background: #009607;"></div>
+                </li>
+                <li parts='["Active_Square_Inner"]' class="row">
+                  <div class="selectedRow"></div>Square Inner<div class="currentColor" style="background: #D3D3D3;"></div>
+                </li>
+                <li parts='["Active_Square_Outer"]' class="row">
+                  <div class="selectedRow"></div>Square Outer<div class="currentColor" style="background: #DDDDDD;"></div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="group">PS4 Button<i class="fas fa-angle-down"></i>
+          <ul>
+            <li parts='["Active_PS4_Icon_Group"]' class="row">
+              <div class="selectedRow"></div>PS4 Button Glyph<div class="currentColor" style="background: #0D0D0D;"></div>
+            </li>
+            <li parts='["Active_PS4_Home_Inner"]' class="row">
+              <div class="selectedRow"></div>PS4 Button Inner<div class="currentColor" style="background: #FAFAFA;"></div>
+            </li>
+            <li parts='["Active_PS4_Home_Border", "Active_PS4_Home_Outer"]' class="row">
+              <div class="selectedRow"></div>PS4 Button Border<div class="currentColor" style="background: #FFFFFF;"></div>
+            </li>
+          </ul>
+        </li>
+        <li class="group">Sticks<i class="fas fa-angle-down"></i>
+          <ul>
+            <li class="group">Left Stick<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Left_Stick_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Text<div class="currentColor" style="background: #000000;"></div>
+                </li>
+                <li parts='["Active_Left_Stick_Inner"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Inner<div class="currentColor" style="background: #1FD2C6;"></div>
+                </li>
+                <li parts='["Active_Left_Stick_Outer"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Outer<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Left_Stick_Border"]' class="row">
+                  <div class="selectedRow"></div>Left Stick Border<div class="currentColor" style="background: #30D5CD;"></div>
+                </li>
+              </ul>
+            </li>
+            <li class="group">Right Stick<i class="fas fa-angle-down"></i>
+              <ul>
+                <li parts='["Active_Right_Stick_Text_Group"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Text<div class="currentColor" style="background: #000000;"></div>
+                </li>
+                <li parts='["Active_Right_Stick_Inner"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Inner<div class="currentColor" style="background: #1FD2C6;"></div>
+                </li>
+                <li parts='["Active_Right_Stick_Outer"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Outer<div class="currentColor" style="background: #3ED8D2;"></div>
+                </li>
+                <li parts='["Active_Right_Stick_Border"]' class="row">
+                  <div class="selectedRow"></div>Right Stick Border<div class="currentColor" style="background: #30D5CD;"></div>
+                </li>
+              </ul>
+            </li>
+            
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="centerSvgHolder">
+      <div class="centerSvg">
+        <object id="controllerSvg" type="image/svg+xml" data="images/controller.svg"></object>
+        <object id="controllerActiveSvg" type="image/svg+xml" data="images/activeController.svg"></object>
+        <object id="disconnectedSvg" type="image/svg+xml" data="images/disconnected.svgz.svg"></object>
+      </div>
+    </div>
+  </div>
+
+  <script type="application/javascript" src="js/jquery-3.3.1.min.js"></script>
+  <script type="application/javascript" src="js/colpick.js"></script>
+  <script type="application/javascript" src="js/script.js"></script>
+<script>
+  $('#colorPicker').colpick({
+    flat: true,
+    color: "FFFFFF",
+    layout: "rgbhex",
+    colorScheme: "dark",
+    submit: false,
+    onChange: function(hsb, hex, rgb, bySetColor) {
+      const part = $('#layerSelect li.row[parts] .selectedRow.selected');
+      if (!part.length) return;
+      part.parent().find('div.currentColor').css('background-color', `#${hex.toUpperCase()}`)
+      const parts = []
+      part.each(function changePartsColor() {
+        parts.push.apply(parts, JSON.parse($(this).parent().attr('parts')));
+        JSON.parse($(this).parent().attr('parts')).forEach(tPart => {
+          $(`li[parts*='"${tPart}"']`).find('div.currentColor').css('background-color', `#${hex.toUpperCase()}`)
+        })
+      })
+      handleColorChange(parts, `#${hex.toUpperCase()}`, part.parent().attr('mode'));
+    }
+  });
+</script>
+</body>
+</html>
