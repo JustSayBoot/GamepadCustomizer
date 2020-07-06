@@ -1,0 +1,35 @@
+.controller.ds4.white {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/baseSvg.svg);
+}
+
+.ds4.white.disconnected {
+  background: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/disconnectedSvg.svg);
+}
+
+.ds4.white .trigger {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/triggersSvg.svg);
+}
+
+.ds4.white .bumper {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/bumperSvg.svg);
+}
+
+.ds4.white .touchpad.pressed {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/touchpadSvg.svg);
+}
+
+.ds4.white .back, .ds4 .start {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/selectSvg.svg);
+}
+
+.ds4.white .button {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/faceSvg.svg);
+}
+
+.ds4.white .stick {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/sticksSvg.svg);
+}
+
+.ds4.white .face {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/SRKavo/dpadSvg.svg);
+}
