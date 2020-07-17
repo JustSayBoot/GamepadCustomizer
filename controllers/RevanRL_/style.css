@@ -1,0 +1,35 @@
+.controller.ds4.white {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/baseSvg.svg);
+}
+
+.ds4.white.disconnected {
+  background: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/disconnectedSvg.svg);
+}
+
+.ds4.white .trigger {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/triggersSvg.svg);
+}
+
+.ds4.white .bumper {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/bumperSvg.svg);
+}
+
+.ds4.white .touchpad.pressed {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/touchpadSvg.svg);
+}
+
+.ds4.white .back, .ds4 .start {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/selectSvg.svg);
+}
+
+.ds4.white .button {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/faceSvg.svg);
+}
+
+.ds4.white .stick {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/sticksSvg.svg);
+}
+
+.ds4.white .face {
+  background-image: url(https://justsayboot.github.io/GamepadCustomizer/controllers/RevanRL_/dpadSvg.svg);
+}
